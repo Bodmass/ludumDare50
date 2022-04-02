@@ -11,6 +11,7 @@ config_version=4
 [application]
 
 config/name="ludumDare50"
+run/main_scene="res://Scenes/Development/Aziz's Test Environment.tscn"
 config/icon="res://icon.png"
 
 [display]
