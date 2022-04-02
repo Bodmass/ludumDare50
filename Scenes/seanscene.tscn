@@ -7,7 +7,7 @@
 [ext_resource path="res://Player/Sprites/Enemies/veronicagreen.png" type="Texture" id=5]
 [ext_resource path="res://Player/Sprites/Enemies/Possessed Mannequin.png" type="Texture" id=6]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D2" type="Node2D"]
 
 [node name="Floor" type="TileMap" parent="."]
 tile_set = ExtResource( 4 )

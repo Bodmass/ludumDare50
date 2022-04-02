@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/Tilesets/Aziz's Test Tileset.tres" type="TileSet" id=1]
-[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Player/EnemySpawner.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Player/PlayerStart.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/GAMEMANAGER.tscn" type="PackedScene" id=8]
 
 [node name="Node2D" type="Node2D"]
 
@@ -21,4 +23,19 @@ cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
 format = 1
 tile_data = PoolIntArray( -2031623, 1, 0, -1769438, 1, 0, -1703935, 1, 0, -1507352, 1, 0, -1507278, 1, 0, -1376193, 1, 0, -983035, 1, 0, -458707, 1, 0, -393197, 1, 0, -262196, 1, 0, -262155, 1, 0, -262149, 2, 0, -262148, 2, 0, -262147, 2, 0, -262146, 2, 0, -262145, 2, 0, -327680, 2, 0, -327679, 2, 0, -327678, 2, 0, -327677, 2, 0, -327676, 2, 0, -196613, 2, 0, -262140, 2, 0, -131077, 2, 0, -196604, 2, 0, -65541, 2, 0, -131068, 2, 0, -14, 1, 0, -5, 2, 0, -65532, 2, 0, 65531, 2, 0, 4, 2, 0, 131067, 2, 0, 65540, 2, 0, 196603, 2, 0, 131076, 2, 0, 262139, 2, 0, 196612, 2, 0, 327675, 2, 0, 327676, 2, 0, 327677, 2, 0, 327678, 2, 0, 262145, 2, 0, 262146, 2, 0, 262147, 2, 0, 262148, 2, 0, 524245, 1, 0, 720919, 1, 0, 851950, 1, 0, 851951, 1, 0, 1048545, 1, 0, 1114171, 1, 0, 1638396, 1, 0, 2031630, 1, 0, 2228179, 1, 0, 2293753, 1, 0, 2228262, 1, 0, 2228295, 1, 0, 2228296, 1, 0, 2883551, 1, 0, 2883591, 1, 0, 3080193, 1, 0, 3080229, 1, 0, 3735611, 1, 0, 3997679, 1, 0, 4259852, 1, 0 )
 
-[node name="Player" parent="." instance=ExtResource( 2 )]
+[node name="Player" parent="." instance=ExtResource( 3 )]
+
+[node name="Spawner" parent="." instance=ExtResource( 2 )]
+position = Vector2( -48, 123 )
+enemyPath = "res://Enemies/Test/Popssessed Mannequin.tscn"
+enemiesSpawned = 5
+
+[node name="Spawner2" parent="." instance=ExtResource( 2 )]
+position = Vector2( -48, 123 )
+enemyPath = "res://Enemies/Test/Veronica Green.tscn"
+enemiesSpawned = 15
+
+[node name="GAMEMANAGER" parent="." instance=ExtResource( 8 )]
+
+[connection signal="body_exited" from="Spawner" to="Player" method="_on_Spawner_body_exited"]
+[connection signal="body_exited" from="Spawner2" to="Player" method="_on_Spawner_body_exited"]
