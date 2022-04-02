@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Enemies/Test/Enemy.gd" type="Script" id=1]
+[ext_resource path="res://Enemies/Test/EnemyDmg.gd" type="Script" id=2]
+[ext_resource path="res://Player/Sprites/Enemies/Possessed Mannequin.png" type="Texture" id=3]
+[ext_resource path="res://Enemies/orb.png" type="Texture" id=4]
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0, 0.521661 ), 0.0, 0.0, 0, 0, Vector2( 0.994111, 0.124549 ), -2.1693, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=4]
+offsets = PoolRealArray( 0, 0.508009, 1 )
+colors = PoolColorArray( 0.580392, 0, 0, 1, 0.368627, 0.0117647, 0.384314, 1, 0, 0, 0, 0 )
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 5.09902
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 8, 8 )
+
+[node name="Posessed Mannequin" type="RigidBody2D"]
+z_index = 4
+collision_layer = 10
+collision_mask = 10
+mode = 2
+gravity_scale = 0.0
+linear_damp = 10.0
+script = ExtResource( 1 )
+speed = 10.0
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2( 0, -11 )
+amount = 60
+preprocess = 1.0
+texture = ExtResource( 4 )
+emission_shape = 2
+emission_rect_extents = Vector2( 10, 10 )
+gravity = Vector2( 0, -10 )
+initial_velocity = 1.0
+angular_velocity = 1.0
+orbit_velocity = 0.1
+linear_accel = 1.0
+radial_accel = 1.0
+tangential_accel = 1.0
+angle = 173.3
+angle_random = 0.52
+scale_amount = 0.05
+scale_amount_random = 0.65
+scale_amount_curve = SubResource( 3 )
+color_ramp = SubResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -8 )
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 2 )
+
+[connection signal="body_entered" from="." to="." method="_on_Enemy_body_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

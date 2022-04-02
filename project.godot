@@ -8,11 +8,26 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Node2D",
+"class": "Weapon",
+"language": "GDScript",
+"path": "res://Weapon.gd"
+} ]
+_global_script_class_icons={
+"Weapon": ""
+}
+
 [application]
 
 config/name="ludumDare50"
-run/main_scene="res://Scenes/Development/Aziz's Test Environment.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Player="*res://Player/Player.tscn"
+Ui="*res://Scenes/UI/UI.tscn"
+GM="*res://Scenes/GAMEMANAGER.tscn"
 
 [display]
 

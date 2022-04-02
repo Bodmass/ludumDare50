@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Spawner.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 200, 200 )
+
+[node name="Enemy Spawner" type="Area2D"]
+collision_layer = 7
+collision_mask = 7
+script = ExtResource( 1 )
+enemyPath = "res://Enemies/Test/Enemy.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[connection signal="body_exited" from="." to="." method="_on_Spawner_body_exited"]
