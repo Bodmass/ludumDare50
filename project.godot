@@ -9,12 +9,18 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Area2D",
+"class": "Pickup",
+"language": "GDScript",
+"path": "res://Pickup.gd"
+}, {
 "base": "Node2D",
 "class": "Weapon",
 "language": "GDScript",
 "path": "res://Weapon.gd"
 } ]
 _global_script_class_icons={
+"Pickup": "",
 "Weapon": ""
 }
 

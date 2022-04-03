@@ -12,6 +12,7 @@ func _ready():
 	for _i in Player.Weapons.get_children():
 		_i.queue_free()		
 	$Body/Panel2/HSLabel.text = "High Score: "+"%012d" % int(GM.getHighScore())
+	$Body/Panel2/Play.grab_focus()
 	pass # Replace with function body.
 
 
