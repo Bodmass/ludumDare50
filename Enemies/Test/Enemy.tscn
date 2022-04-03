@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Enemies/Test/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://Enemies/Test/EnemyDmg.gd" type="Script" id=2]
-[ext_resource path="res://Player/Sprites/Enemies/veronicagreen.png" type="Texture" id=3]
+[ext_resource path="res://Player/Sprites/player-temp.png" type="Texture" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 5.09902
@@ -41,7 +41,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, -2 ), Vector2( 0, 0 ) ]
 }
 
-[node name="Veronica Green" type="RigidBody2D"]
+[node name="Enemy" type="RigidBody2D"]
 z_index = 4
 collision_layer = 10
 collision_mask = 10
@@ -49,10 +49,6 @@ mode = 2
 gravity_scale = 0.0
 linear_damp = 10.0
 script = ExtResource( 1 )
-speed = 12.0
-damage = 2
-maxHp = 4
-expDrop = 5
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 3 )
@@ -72,4 +68,6 @@ anims/RESET = SubResource( 3 )
 anims/VG_Bob = SubResource( 4 )
 
 [connection signal="body_entered" from="." to="." method="_on_Enemy_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_Enemy_body_exited"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

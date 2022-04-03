@@ -1,0 +1,112 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Theme/theme.tres" type="Theme" id=1]
+[ext_resource path="res://Scenes/TitleScreen/Sprites/dragpocolypse_logo.png" type="Texture" id=2]
+[ext_resource path="res://Enemies/orb.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/TitleScreen/Title.gd" type="Script" id=4]
+
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.103319, 0.52 ), 0.0, 0.0, 0, 0, Vector2( 0.458779, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.546911, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 0.274414, 0, 0, 1, 0, 0, 0, 0.054902 )
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource( 4 )
+
+[node name="Body" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -256.0
+margin_top = -144.0
+margin_right = 256.0
+margin_bottom = 144.0
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="ColorRect" type="ColorRect" parent="Body"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Body"]
+position = Vector2( 239, 321 )
+amount = 300
+lifetime = 3.0
+preprocess = 1.0
+randomness = 0.15
+lifetime_randomness = 0.2
+texture = ExtResource( 3 )
+emission_shape = 2
+emission_rect_extents = Vector2( 350, 1 )
+gravity = Vector2( 0, -100 )
+angular_velocity = 11.74
+radial_accel = 14.94
+radial_accel_random = 0.9
+scale_amount = 8.0
+scale_amount_random = 0.36
+scale_amount_curve = SubResource( 2 )
+color = Color( 1, 1, 1, 0.521569 )
+color_ramp = SubResource( 1 )
+
+[node name="TextureRect" type="TextureRect" parent="Body"]
+anchor_right = 1.0
+margin_top = 9.0
+margin_bottom = 81.0
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 6
+
+[node name="Panel" type="Panel" parent="Body"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 121.0
+margin_top = -20.0
+margin_right = -121.0
+margin_bottom = 141.0
+custom_styles/panel = SubResource( 3 )
+
+[node name="Button" type="Button" parent="Body/Panel"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -9.0
+margin_bottom = 9.0
+text = "delay the invetiable"
+
+[node name="Panel2" type="Panel" parent="Body"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 121.0
+margin_top = -20.0
+margin_right = -121.0
+margin_bottom = 141.0
+custom_styles/panel = SubResource( 3 )
+
+[node name="Play" type="Button" parent="Body/Panel2"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -9.0
+margin_bottom = 9.0
+text = "delay the invetiable"
+
+[node name="HSLabel" type="Label" parent="Body/Panel2"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -26.5
+margin_bottom = -8.5
+text = "highscore: 0000000000"
+align = 1
+
+[connection signal="button_down" from="Body/Panel2/Play" to="." method="_on_Play_button_down"]

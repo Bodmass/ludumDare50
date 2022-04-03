@@ -3,18 +3,32 @@ extends RigidBody2D
 export(float) var speed = 1
 export(int) var damage = 5
 export(int) var maxHp = 5
+export(int) var hpIncreasePLvl = 4
+export(int) var expDrop = 20
+export(int) var attackCD = 1.0
+var lastAttack = 0.0
 var curHp = 5
 var motion = Vector2.ZERO
+var playerAttackable = false
+
 
 func get_class():
 	return "Enemy"
+	
+func flashRed():
+	$Sprite.modulate = Color(1, 0, 0)
+	yield(get_tree().create_timer(0.1), "timeout")
+	$Sprite.modulate = Color(1, 1, 1)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	curHp
+	add_to_group("enemyList")
+	maxHp+=(hpIncreasePLvl*(Player.level-1))
+	curHp = maxHp
 	pass # Replace with function body.
 	
 func _physics_process(delta):
+	lastAttack += delta
 	if(!GM.gameStarted or GM.paused):
 		return
 	motion = position.direction_to(Player.position) * speed
@@ -23,6 +37,10 @@ func _physics_process(delta):
 		$Sprite.flip_h = true
 	else:
 		$Sprite.flip_h = false
+	if(playerAttackable):
+		if(lastAttack >= attackCD):
+			hit()
+			lastAttack = 0
 
 func hit():
 	Player.TakeDamage(damage)
@@ -34,10 +52,19 @@ func _on_Enemy_body_entered(body):
 	
 func enemyhit(damage):
 	curHp -= damage
+	flashRed()
+	var kbDir = Player.global_position.direction_to(self.global_position)
+	print(kbDir)
+	apply_central_impulse(kbDir * 100)
 	if(curHp <= 0):
 		GM.score +=5
+		Player.curExp+=expDrop
 		queue_free()
 	
 func _on_Area2D_body_entered(body):
 	if(body == Player):
-		hit()
+		playerAttackable = true
+
+func _on_Area2D_body_exited(body):
+	if(body == Player):
+		playerAttackable = false
