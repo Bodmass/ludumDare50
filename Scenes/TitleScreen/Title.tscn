@@ -115,4 +115,4 @@ stream = ExtResource( 5 )
 volume_db = -10.0
 autoplay = true
 
-[connection signal="button_down" from="Body/Panel2/Play" to="." method="_on_Play_button_down"]
+[connection signal="button_up" from="Body/Panel2/Play" to="." method="_on_Play_button_up"]

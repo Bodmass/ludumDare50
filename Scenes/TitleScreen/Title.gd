@@ -15,8 +15,6 @@ func _ready():
 	$Body/Panel2/Play.grab_focus()
 	pass # Replace with function body.
 
-
-
-func _on_Play_button_down():
+func _on_Play_button_up():
 	get_tree().change_scene_to(Scene)
 	pass # Replace with function body.
