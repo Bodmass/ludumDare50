@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/Tilesets/Aziz's Test Tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Player/EnemySpawner.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Player/PlayerStart.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Development/LevelScene.gd" type="Script" id=4]
 [ext_resource path="res://Scenes/GAMEMANAGER.tscn" type="PackedScene" id=8]
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource( 4 )
 
 [node name="Tilemap Layers" type="Node2D" parent="."]
 

@@ -98,6 +98,7 @@ hframes = 4
 shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
+visible = false
 current = true
 editor_draw_limits = true
 editor_draw_drag_margin = true

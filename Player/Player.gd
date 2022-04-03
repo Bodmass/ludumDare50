@@ -29,8 +29,24 @@ onready var Camera = $Camera2D
 onready var SpawnPath = $Path2D/PathFollow2D
 
 func _ready():
+	hide()
 	animationTree.active = true
 	pass
+	
+func RefreshPlayer():
+	hide()
+	for _i in Weapons.get_children():
+		_i.queue_free()		
+	curExp = 0
+	maxExp = 100
+	maxHp = 100
+	curHp = 100
+	GM.timer = 0
+	GM.score = 0
+	GM.HHUnlocked = false
+	GM.SUnlocked = false
+	GM.WUnlocked = false
+	Ui.updateUI()
 
 func _physics_process(delta):
 	if(!GM.gameStarted or GM.paused):

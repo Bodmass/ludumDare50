@@ -1,10 +1,16 @@
 extends Node2D
 
+var EndScene = load("res://Scenes/TitleScreen/EndScreen.tscn")
+
 var gameStarted = false
 var paused = false
 
 var timer = 0.0;
 var score = 0
+
+var HHUnlocked = false
+var SUnlocked = false
+var WUnlocked = false
 
 var HighHeelUpgrade
 var ShadeUpgrade
@@ -34,26 +40,29 @@ func UpgradeList():
 
 func AddUpgrade(upgrade):
 	if(upgrade == "HighHeel"):
-		if(HighHeelUpgrade == null):
+		if(HHUnlocked == false):
 			var newWeapon = highHeelObject.instance()
 			Player.Weapons.add_child(newWeapon)
 			HighHeelUpgrade = newWeapon
+			HHUnlocked = true
 		else:
 			HighHeelUpgrade.level +=1
 			HighHeelUpgrade.onUpgrade()
 	elif(upgrade == "Whig"):
-		if(WhigUpgrade == null):
+		if(WUnlocked == false):
 			var newWeapon = whigObject.instance()
 			Player.Weapons.add_child(newWeapon)
 			WhigUpgrade = newWeapon
+			WUnlocked = true
 		else:
 			WhigUpgrade.level +=1
 			WhigUpgrade.onUpgrade()
 	elif(upgrade == "Shade"):
-		if(ShadeUpgrade == null):
+		if(SUnlocked == false):
 			var newWeapon = shadeObject.instance()
 			Player.Weapons.add_child(newWeapon)
 			ShadeUpgrade = newWeapon
+			SUnlocked = true
 		else:
 			ShadeUpgrade.level +=1
 			ShadeUpgrade.onUpgrade()
@@ -61,14 +70,15 @@ func AddUpgrade(upgrade):
 		print("This upgrade doesn't exist...")
 		
 func startGame():
+	Player.show()
 	Ui.Canvas.show()
 	Ui.Greyout.show()
 	paused = true
 	UpgradeList()
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	startGame()
-	pass # Replace with function body.
+	Ui.Canvas.hide()
+	pass
 
 func _process(delta):
 	if(!gameStarted):
@@ -87,12 +97,38 @@ func _process(delta):
 		
 func onPlayerDeath():
 	paused = true
+	if(score > getHighScore()):
+		saveScore()
+	get_tree().change_scene_to(EndScene)
 	
 func TriggerUpgrade():
 	Ui.Canvas.show()
 	Ui.Greyout.show()
 	paused = true
 	UpgradeList()
+	
+var save_path = "user://save.dat"
+
+func saveScore():
+	var data = {
+		"score" : score,
+	}
+	var file = File.new()
+	var error = file.open(save_path, File.WRITE)
+	if error == OK:
+		file.store_var(data)
+		file.close()
+		
+func getHighScore():
+	var file = File.new()
+	if(file.file_exists(save_path)):
+		var error = file.open(save_path, File.READ)
+		if error == OK:
+			var player_data = file.get_var()
+			return player_data.score
+			file.close()
+		return 0
+	return 0
 
 
 func findClosestEnemy():
