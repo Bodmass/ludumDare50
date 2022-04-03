@@ -5,9 +5,11 @@ export(int) var damage = 5
 export(int) var maxHp = 5
 export(int) var hpIncreasePLvl = 4
 export(int) var expDrop = 20
+export(int) var attackCD = 1.0
+var lastAttack = 0.0
 var curHp = 5
 var motion = Vector2.ZERO
-
+var playerAttackable = false
 
 
 func get_class():
@@ -26,6 +28,7 @@ func _ready():
 	pass # Replace with function body.
 	
 func _physics_process(delta):
+	lastAttack += delta
 	if(!GM.gameStarted or GM.paused):
 		return
 	motion = position.direction_to(Player.position) * speed
@@ -34,6 +37,10 @@ func _physics_process(delta):
 		$Sprite.flip_h = true
 	else:
 		$Sprite.flip_h = false
+	if(playerAttackable):
+		if(lastAttack >= attackCD):
+			hit()
+			lastAttack = 0
 
 func hit():
 	Player.TakeDamage(damage)
@@ -56,4 +63,8 @@ func enemyhit(damage):
 	
 func _on_Area2D_body_entered(body):
 	if(body == Player):
-		hit()
+		playerAttackable = true
+
+func _on_Area2D_body_exited(body):
+	if(body == Player):
+		playerAttackable = false
