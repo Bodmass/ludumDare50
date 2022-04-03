@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/A Journey Awaits.mp3-36a21e2a32ebf101f0579d3e2faab495.mp3str"
+
+[deps]
+
+source_file="res://Scenes/Audio/BGM/A Journey Awaits.mp3"
+dest_files=[ "res://.import/A Journey Awaits.mp3-36a21e2a32ebf101f0579d3e2faab495.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

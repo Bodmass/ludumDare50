@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Theme/theme.tres" type="Theme" id=1]
 [ext_resource path="res://Scenes/TitleScreen/Sprites/dragpocolypse_logo.png" type="Texture" id=2]
 [ext_resource path="res://Enemies/orb.png" type="Texture" id=3]
 [ext_resource path="res://Scenes/TitleScreen/Title.gd" type="Script" id=4]
+[ext_resource path="res://Scenes/Audio/BGM/Iwan Gabovitch - Dark Ambience Loop.mp3" type="AudioStream" id=5]
 
 [sub_resource type="Curve" id=2]
 _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.103319, 0.52 ), 0.0, 0.0, 0, 0, Vector2( 0.458779, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
@@ -108,5 +109,10 @@ margin_top = -26.5
 margin_bottom = -8.5
 text = "highscore: 0000000000"
 align = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = -10.0
+autoplay = true
 
 [connection signal="button_down" from="Body/Panel2/Play" to="." method="_on_Play_button_down"]

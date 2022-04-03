@@ -11,6 +11,7 @@ func _ready():
 	Ui.UpgradeList.hide()
 	$Body/Panel2/Panel3/Score.text = "High Score: "+"%012d" % int(GM.score)
 	$Body/Panel2/Panel3/HSLabel.text = "High Score: "+"%012d" % int(GM.getHighScore())
+	$Body/Panel2/Return.grab_focus()
 	Player.RefreshPlayer()
 	pass # Replace with function body.
 

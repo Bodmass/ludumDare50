@@ -25,7 +25,7 @@ func _process(delta):
 	timerSpawnCur+=delta
 	if timerSpawnCur >= timerSpawnMax:
 		timerSpawnCur = 0
-		for i in range(0, enemiesSpawned + (increasePerLevel*(Player.level-1))):
+		for i in range(0, enemiesSpawned + GM.timerCompletions + (increasePerLevel*(Player.level-1))):
 			Spawn()
 		
 func Spawn():

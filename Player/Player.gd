@@ -41,6 +41,9 @@ func RefreshPlayer():
 	maxExp = 100
 	maxHp = 100
 	curHp = 100
+	sizeModifier = 0
+	duplicator = 0
+	hitCapIncrease = 1
 	GM.timer = 0
 	GM.score = 0
 	GM.HHUnlocked = false

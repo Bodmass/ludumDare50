@@ -6,6 +6,9 @@ var gameStarted = false
 var paused = false
 
 var timer = 0.0;
+
+var timerCompletions = 0
+
 var score = 0
 
 var HHUnlocked = false
@@ -21,6 +24,19 @@ var AttackDirection = 1
 var highHeelObject = load("res://Player/Weapons/HighHeel.tscn")
 var shadeObject = load("res://Player/Weapons/SassAura.tscn")
 var whigObject = load("res://Player/Weapons/Whig.tscn")
+
+var foodPickup = load("res://Pickups/Food.tscn")
+var tearPickup = load("res://Pickups/Tears.tscn")
+
+func getLootDrop():
+	var item_id = randi() % 50
+	print(item_id)
+	if(item_id == 1):
+		return "Food"
+	elif(item_id == 2):
+		return "Tears"
+	else:
+		return "None"
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -70,6 +86,8 @@ func AddUpgrade(upgrade):
 		print("This upgrade doesn't exist...")
 		
 func startGame():
+	timerCompletions = 0
+	$Timer.start()
 	Player.show()
 	Ui.Canvas.show()
 	Ui.Greyout.show()
@@ -90,13 +108,14 @@ func _process(delta):
 	findClosestEnemy()
 	if(Player.curExp>=Player.maxExp):
 		Player.curExp = 0
-		Player.maxExp = Player.maxExp * 3.5
+		Player.maxExp = Player.maxExp * 2.5
 		Ui.EXPbar.max_value = Player.maxExp
 		Ui.updateUI()
 		TriggerUpgrade()
 		
 func onPlayerDeath():
 	paused = true
+	$Timer.stop()
 	if(score > getHighScore()):
 		saveScore()
 	get_tree().change_scene_to(EndScene)
@@ -144,3 +163,10 @@ func findClosestEnemy():
 		AttackDirection = 0
 	else:
 		AttackDirection = 1
+
+
+func _on_Timer_timeout():
+	$Timer.start()
+	timerCompletions+=1
+	print(timerCompletions)
+	pass # Replace with function body.

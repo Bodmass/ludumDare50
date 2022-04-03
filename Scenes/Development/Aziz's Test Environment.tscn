@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/Tilesets/Aziz's Test Tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Player/EnemySpawner.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Player/PlayerStart.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Development/LevelScene.gd" type="Script" id=4]
+[ext_resource path="res://Scenes/Audio/BGM/A Journey Awaits.mp3" type="AudioStream" id=5]
 [ext_resource path="res://Scenes/GAMEMANAGER.tscn" type="PackedScene" id=8]
 
 [node name="Node2D" type="Node2D"]
@@ -39,6 +40,11 @@ enemiesSpawned = 15
 increasePerLevel = 3
 
 [node name="GAMEMANAGER" parent="." instance=ExtResource( 8 )]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = -10.0
+autoplay = true
 
 [connection signal="body_exited" from="Spawner" to="Player" method="_on_Spawner_body_exited"]
 [connection signal="body_exited" from="Spawner2" to="Player" method="_on_Spawner_body_exited"]
