@@ -34,6 +34,7 @@ enemiesSpawned = 5
 position = Vector2( -48, 123 )
 enemyPath = "res://Enemies/Test/Veronica Green.tscn"
 enemiesSpawned = 15
+increasePerLevel = 3
 
 [node name="GAMEMANAGER" parent="." instance=ExtResource( 8 )]
 

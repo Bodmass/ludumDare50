@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Whig.gd" type="Script" id=1]
 [ext_resource path="res://Player/Weapons/whip-me.png" type="Texture" id=2]
@@ -170,6 +170,9 @@ start_node = "Whig-idle"
 [sub_resource type="RectangleShape2D" id=14]
 extents = Vector2( 36, 5 )
 
+[sub_resource type="RectangleShape2D" id=15]
+extents = Vector2( 36, 5 )
+
 [node name="Whig" type="Node2D"]
 script = ExtResource( 1 )
 
@@ -183,6 +186,19 @@ tree_root = SubResource( 11 )
 anim_player = NodePath("../AnimationPlayer")
 parameters/playback = SubResource( 12 )
 
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8
+space_override = 3
+
+[node name="RightCollision" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 36, 0 )
+shape = SubResource( 14 )
+
+[node name="LeftCollision" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( -36, 0 )
+shape = SubResource( 15 )
+
 [node name="Whig_Anchor" type="Node2D" parent="."]
 
 [node name="Sprite_Right" type="Sprite" parent="Whig_Anchor"]
@@ -194,14 +210,5 @@ texture = ExtResource( 2 )
 offset = Vector2( 16, 0 )
 hframes = 4
 
-[node name="Area2D" type="Area2D" parent="Whig_Anchor"]
-collision_layer = 8
-collision_mask = 8
-space_override = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Whig_Anchor/Area2D"]
-position = Vector2( 36, 0 )
-shape = SubResource( 14 )
-
-[connection signal="body_entered" from="Whig_Anchor/Area2D" to="." method="_on_Area2D_body_entered"]
-[connection signal="body_exited" from="Whig_Anchor/Area2D" to="." method="_on_Area2D_body_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

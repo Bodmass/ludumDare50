@@ -3,6 +3,7 @@ extends KinematicBody2D
 var curHp = 100
 var maxHp = 100
 
+var level = 1
 var curExp = 0
 var maxExp = 100
 
@@ -61,5 +62,7 @@ func TakeDamage(damage):
 	curHp -= damage
 	print("taken "+str(damage)+ " dmg..")
 	if(curHp <= 0):
+		Ui.updateUI()
 		print("ded")
 		visible = false
+		GM.onPlayerDeath()

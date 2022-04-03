@@ -43,6 +43,9 @@ colors = PoolColorArray( 0.560784, 0.701961, 0.780392, 1, 0.713726, 0.309804, 0.
 
 [node name="SassAura" type="Node2D"]
 script = ExtResource( 1 )
+attackCD = 0.5
+damage = 2
+damage_increase = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 4 )
