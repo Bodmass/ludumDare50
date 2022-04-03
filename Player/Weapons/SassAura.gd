@@ -3,11 +3,6 @@ extends Weapon
 onready var ParticleSystem = $CPUParticles2D
 onready var Collision = $Area2D/CollisionShape2D
 
-func _physics_process(delta):
-	if(Input.is_action_just_pressed("ui_page_up")):
-		level+=1;
-		onUpgrade()
-
 func Attack():
 	get_tree().call_group("enemySassRange", "enemyhit", damage)
 	

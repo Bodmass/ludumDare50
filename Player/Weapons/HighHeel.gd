@@ -4,12 +4,6 @@ onready var highheel_Single = load("res://Player/Weapons/HighHeel_Single.tscn")
 var sizeModifier = 0
 var passthrough = 0
 
-func _physics_process(delta):
-	pass
-#	if(Input.is_action_just_pressed("ui_page_up")):
-#		level+=1;
-#		onUpgrade()
-
 func Attack():
 	for i in range(0, Player.duplicator+1):
 		var instanceHeel = highheel_Single.instance()
