@@ -56,7 +56,7 @@ func enemyhit(damage):
 	curHp -= damage
 	flashRed()
 	var kbDir = Player.global_position.direction_to(self.global_position)
-	print(kbDir)
+	#print(kbDir)
 	apply_central_impulse(kbDir * 100)
 	if(curHp <= 0):
 		GM.score +=5

@@ -19,6 +19,8 @@ func Attack():
 		instanceHeel.hitCap+=passthrough
 		yield(get_tree().create_timer(0.1), "timeout")
 		
+func updateMe():
+	sizeModifier = (level + Player.sizeModifier -1)*0.1
 	
 func onUpgrade():
 	if(level >= maxLevel):

@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-var Scene = load("res://Scenes/Development/Aziz's Test Environment.tscn")
+var Scene = load("res://Scenes/GameLevel.tscn")
 
 func _ready():
 	GM.gameStarted = false

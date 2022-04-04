@@ -105,7 +105,7 @@ func _process(delta):
 		return
 	timer+=delta
 	Ui.updateUI()
-	findClosestEnemy()
+
 	if(Player.curExp>=Player.maxExp):
 		Player.curExp = 0
 		Player.maxExp = Player.maxExp * 2.5
@@ -168,5 +168,15 @@ func findClosestEnemy():
 func _on_Timer_timeout():
 	$Timer.start()
 	timerCompletions+=1
-	print(timerCompletions)
+	#print(timerCompletions)
+	pass # Replace with function body.
+
+
+func _on_CheckEnemy_timeout():
+	$CheckEnemy.start()
+	if(!gameStarted):
+		return
+	if(paused):
+		return
+	findClosestEnemy()
 	pass # Replace with function body.

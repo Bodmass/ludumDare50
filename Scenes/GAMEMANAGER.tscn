@@ -11,4 +11,8 @@ __meta__ = {
 [node name="Timer" type="Timer" parent="."]
 wait_time = 30.0
 
+[node name="CheckEnemy" type="Timer" parent="."]
+autostart = true
+
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="CheckEnemy" to="." method="_on_CheckEnemy_timeout"]

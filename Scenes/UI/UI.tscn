@@ -1,8 +1,7 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Theme/theme.tres" type="Theme" id=1]
 [ext_resource path="res://Scenes/UI/UI.gd" type="Script" id=2]
-[ext_resource path="res://Enemies/orb.png" type="Texture" id=3]
 [ext_resource path="res://Player/Sprites/ItemSprites/Shoe.png" type="Texture" id=4]
 [ext_resource path="res://Player/Sprites/ItemSprites/whig.png" type="Texture" id=5]
 [ext_resource path="res://Player/Sprites/ItemSprites/ornacia.png" type="Texture" id=6]
@@ -71,19 +70,19 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -85.0
 
-[node name="Button" type="Button" parent="Body/Panel/HP2"]
-margin_left = 30.0
-margin_right = 81.0
-margin_bottom = 18.0
-disabled = true
-icon = ExtResource( 3 )
-flat = true
-align = 0
-expand_icon = true
+[node name="Button" type="TextureRect" parent="Body/Panel/HP2"]
+margin_left = 34.0
+margin_top = 1.0
+margin_right = 56.0
+margin_bottom = 17.0
 
 [node name="Time" type="Label" parent="Body/Panel/HP2/Button"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = -4.0
+margin_top = -1.0
+margin_right = 27.0
+margin_bottom = -1.0
 text = "00:00"
 align = 2
 valign = 1

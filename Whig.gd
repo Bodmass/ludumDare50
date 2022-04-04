@@ -26,6 +26,13 @@ func Attack():
 		$Whig_Anchor.scale.x = 1
 	playback.travel("Whig-whip")
 	get_tree().call_group("enemyWhipRange", "enemyhit", damage)
+
+func updateMe():
+	var SizeModifierX = ((level + Player.sizeModifier) -1)*0.1
+	var SizeModifierY =  ((level + Player.sizeModifier) -1)*0.1
+
+	scale.x = 1+SizeModifierX
+	scale.y = 1+SizeModifierY
 	
 func onUpgrade():
 	if(level >= maxLevel+1):

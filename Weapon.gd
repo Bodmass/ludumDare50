@@ -28,4 +28,7 @@ func onUpgrade():
 func processFrame():
 	pass
 	
+func updateMe():
+	pass
+	
 
